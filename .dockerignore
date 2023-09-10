@@ -1,0 +1,6 @@
+.venv/
+.vscode/
+.env
+README.md
+LICENSE
+__pycache__
