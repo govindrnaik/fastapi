@@ -8,6 +8,30 @@
         "documentation": {}
     },
     {
+        "label": "Request",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Jinja2Templates",
+        "importPath": "fastapi.templating",
+        "description": "fastapi.templating",
+        "isExtraImport": true,
+        "detail": "fastapi.templating",
+        "documentation": {}
+    },
+    {
+        "label": "StaticFiles",
+        "importPath": "fastapi.staticfiles",
+        "description": "fastapi.staticfiles",
+        "isExtraImport": true,
+        "detail": "fastapi.staticfiles",
+        "documentation": {}
+    },
+    {
         "label": "uvicorn",
         "kind": 6,
         "isExtraImport": true,
@@ -25,20 +49,11 @@
         "documentation": {}
     },
     {
-        "label": "index",
-        "kind": 2,
-        "importPath": "main",
-        "description": "main",
-        "peekOfCode": "def index():\n    return {\"data\": f\"Hello {env['MY_NAME_VARIABLE']}!!!\"}\nif __name__ == \"__main__\":\n    uvicorn.run(\"main:app\", host=\"0.0.0.0\", reload=True)",
-        "detail": "main",
-        "documentation": {}
-    },
-    {
         "label": "app",
         "kind": 5,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "app = FastAPI()\n@app.get(\"/\")\ndef index():\n    return {\"data\": f\"Hello {env['MY_NAME_VARIABLE']}!!!\"}\nif __name__ == \"__main__\":\n    uvicorn.run(\"main:app\", host=\"0.0.0.0\", reload=True)",
+        "peekOfCode": "app = FastAPI()\ntemplates=Jinja2Templates(directory=\"templates\")\napp.mount(\"/static\", StaticFiles(directory=\"static\"), name=\"static\")\n# @app.get(\"/\")\n# def index():\n#     return {\"data\": f\"Hello {env['MY_NAME_VARIABLE']}!!!\"}\n@app.get(\"/\")\nasync def index(request:Request):\n    return templates.TemplateResponse(\"base.html\",{\"request\":request})\nif __name__ == \"__main__\":",
         "detail": "main",
         "documentation": {}
     }

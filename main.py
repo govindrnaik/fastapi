@@ -1,14 +1,23 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
+from fastapi.templating import Jinja2Templates
+from fastapi.staticfiles import StaticFiles
+
 import uvicorn
 
 from os import environ as env
 
-
 app = FastAPI()
+templates=Jinja2Templates(directory="templates")
+app.mount("/static", StaticFiles(directory="static"), name="static")
+    
+# @app.get("/")
+# def index():
+#     return {"data": f"Hello {env['MY_NAME_VARIABLE']}!!!"}
+
 
 @app.get("/")
-def index():
-    return {"data": f"Hello {env['MY_NAME_VARIABLE']}!!!"}
+async def index(request:Request):
+    return templates.TemplateResponse("base.html",{"request":request})
 
 
 if __name__ == "__main__":
