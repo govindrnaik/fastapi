@@ -53,7 +53,7 @@
         "kind": 5,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "app = FastAPI()\ntemplates=Jinja2Templates(directory=\"templates\")\napp.mount(\"/static\", StaticFiles(directory=\"static\"), name=\"static\")\n# @app.get(\"/\")\n# def index():\n#     return {\"data\": f\"Hello {env['MY_NAME_VARIABLE']}!!!\"}\n@app.get(\"/\")\nasync def index(request:Request):\n    return templates.TemplateResponse(\"base.html\",{\"request\":request})\nif __name__ == \"__main__\":",
+        "peekOfCode": "app = FastAPI()\ntemplates=Jinja2Templates(directory=\"templates\")\napp.mount(\"/static\", StaticFiles(directory=\"static\"), name=\"static\")\n# @app.get(\"/\")\n# def index():\n#     return {\"data\": f\"Hello {env['MY_NAME_VARIABLE']}!!!\"}\n@app.get(\"/\")\nasync def index(request:Request):\n    return templates.TemplateResponse(\"base.html\",{\"request\":request})\n@app.get(\"/login\")",
         "detail": "main",
         "documentation": {}
     }
